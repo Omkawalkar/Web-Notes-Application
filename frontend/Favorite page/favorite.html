@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="favorite.css">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#6900b4",
+                        "on-tertiary-container": "#63054a",
+                        "primary": "#4647d3",
+                        "tertiary": "#963776",
+                        "primary-container": "#9396ff",
+                        "on-tertiary-fixed": "#3b002b",
+                        "secondary-container": "#e5c6ff",
+                        "inverse-on-surface": "#9a9d9f",
+                        "on-surface-variant": "#595c5e",
+                        "primary-fixed-dim": "#8387ff",
+                        "on-secondary-fixed": "#4f0089",
+                        "outline": "#747779",
+                        "error-container": "#f74b6d",
+                        "tertiary-dim": "#882a69",
+                        "error-dim": "#a70138",
+                        "surface-container-low": "#eef1f3",
+                        "error": "#b41340",
+                        "on-primary-container": "#0a0081",
+                        "outline-variant": "#abadaf",
+                        "on-surface": "#2c2f31",
+                        "primary-dim": "#3939c7",
+                        "on-tertiary": "#ffeef4",
+                        "on-primary": "#f4f1ff",
+                        "surface-variant": "#d9dde0",
+                        "on-background": "#2c2f31",
+                        "inverse-primary": "#8083ff",
+                        "inverse-surface": "#0b0f10",
+                        "surface-dim": "#d0d5d8",
+                        "secondary-fixed": "#e5c6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#fbefff",
+                        "surface-container": "#e5e9eb",
+                        "surface-container-high": "#dfe3e6",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "on-error": "#ffefef",
+                        "on-error-container": "#510017",
+                        "primary-fixed": "#9396ff",
+                        "tertiary-container": "#ff8ed2",
+                        "surface-tint": "#4647d3",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "secondary": "#8126cf",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "surface": "#f5f7f9",
+                        "surface-bright": "#f5f7f9",
+                        "secondary-dim": "#740ec2",
+                        "tertiary-fixed": "#ff8ed2",
+                        "background": "#f5f7f9",
+                        "surface-container-highest": "#d9dde0",
+                        "on-primary-fixed": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-surface">
+    <aside
+        class="fixed left-0 top-0 h-full flex flex-col p-4 z-50 h-screen w-64 rounded-r-3xl bg-slate-100/50 dark:bg-slate-950/50 backdrop-blur-3xl font-inter text-sm transition-transform duration-300 ease-in-out">
+        <!-- Updated Header - Removed profile icon and changed text -->
+        <div class="mb-8 px-4 flex items-center justify-center">
+            <div>
+                <h1 class="text-2xl font-extrabold tracking-tighter text-indigo-600 dark:text-indigo-400 text-center">
+                    WEB NOTE'S</h1>
+
+            </div>
+        </div>
+       <nav class="flex-1 space-y-1">
+
+    <!-- Back Button -->
+    <a href="../Home page/Home.html"
+        class="signature-gradient text-white rounded-xl py-3 px-4 mb-6 flex items-center justify-center gap-2 font-medium">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back
+    </a>
+
+    <!-- All Notes -->
+    <a href="../Home page/Home.html"
+        class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+        <span class="material-symbols-outlined">description</span>
+        <span>All Notes</span>
+    </a>
+
+    <!-- Favorites (ACTIVE) -->
+    <a href="#"
+        class="flex items-center gap-3 px-4 py-2 text-indigo-600 bg-white rounded-xl font-semibold">
+        <span class="material-symbols-outlined"
+            style='font-variation-settings: "FILL" 1;'>star</span>
+        <span>Favorites</span>
+    </a>
+
+    <!-- Pinned -->
+    <a href="../pinned page/pinned.html"
+        class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+        <span class="material-symbols-outlined">push_pin</span>
+        <span>Pinned</span>
+    </a>
+
+    <!-- Folders -->
+    <a href="../folder/folder.html"
+        class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+        <span class="material-symbols-outlined">folder</span>
+        <span>Folders</span>
+    </a>
+
+</nav>
+    </aside>
+
+    <main class="ml-64 min-h-screen">
+        <header
+            class="fixed top-0 left-64 right-0 z-40 h-16 flex items-center px-10 bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-2xl shadow-sm font-inter tracking-tight">
+        </header>
+
+        <div class="pt-24 px-10 pb-20 max-w-[1600px] mx-auto">
+            <section class="mb-12">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Favorites</h2>
+                        <p class="text-on-surface-variant font-medium opacity-70">Critical artifacts and ongoing
+                            thoughts.</p>
+                    </div>
+                    <button
+                        class="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest px-4 py-2 hover:bg-primary-container/20 rounded-lg transition-all">
+                        Filter by tag <span class="material-symbols-outlined text-lg"
+                            data-icon="filter_list">filter_list</span>
+                    </button>
+                </div>
+
+                <div id="favoriteContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="favorite.js"></script>
+</body>
+
+</html>

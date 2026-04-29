@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title> WEB NOTE'S</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="folder.css">
+</head>
+
+<body class="bg-surface">
+    <aside
+        class="fixed left-0 top-0 h-full flex flex-col p-4 z-50 h-screen w-64 rounded-r-3xl bg-slate-100/50 dark:bg-slate-950/50 backdrop-blur-3xl font-inter text-sm transition-transform duration-300 ease-in-out">
+        <!-- Updated Header - Removed profile icon and changed text -->
+        <div class="mb-8 px-4 flex items-center justify-center">
+            <div>
+                <h1 class="text-2xl font-extrabold tracking-tighter text-indigo-600 dark:text-indigo-400 text-center">
+                    WEB NOTE'S</h1>
+
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a href="../Home page/Home.html"
+                class="signature-gradient text-white rounded-xl py-3 px-4 mb-6 flex items-center justify-center gap-2 font-medium">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Back
+            </a>
+            <a href="../Home page/Home.html"
+                class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+                <span class="material-symbols-outlined">description</span>
+                <span>All Notes</span>
+            </a>
+            <a href="../Favorite page/favorite.html"
+                class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+                <span class="material-symbols-outlined">star</span>
+                <span>Favorites</span>
+            </a>
+            <a href="../pinned page/pinned.html"
+                class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-xl transition-colors">
+                <span class="material-symbols-outlined">push_pin</span>
+                <span>Pinned</span>
+            </a>
+            <a href="../folder/folder.html"
+                class="flex items-center gap-3 px-4 py-2 text-indigo-600 bg-white rounded-xl font-semibold">
+                <span class="material-symbols-outlined">folder</span>
+                <span>Folders</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="ml-64 min-h-screen">
+        <header
+            class="fixed top-0 left-64 right-0 z-40 h-16 flex items-center px-10 bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-2xl shadow-sm font-inter tracking-tight">
+            <div class="flex items-center justify-between w-full">
+                <h1 class="text-xl font-bold">Folders</h1>
+                <button id="createFolderBtn"
+                    class="signature-gradient text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                    New Folder
+                </button>
+            </div>
+        </header>
+
+        <div class="pt-24 px-10 pb-20 max-w-[1600px] mx-auto">
+            <!-- Folders Grid -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Your Folders</h2>
+                <div id="foldersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Folders will appear here -->
+                </div>
+            </section>
+
+            <!-- Notes in Selected Folder -->
+            <section id="folderNotesSection" class="hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="selectedFolderName" class="text-2xl font-bold">Notes in <span></span></h2>
+                    <button id="backToFoldersBtn"
+                        class="text-primary hover:underline flex items-center gap-2">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Back to Folders
+                    </button>
+                </div>
+                <div id="folderNotesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Notes will appear here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Create/Edit Folder Modal -->
+    <div id="folderModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-96 max-w-md">
+            <h3 id="modalTitle" class="text-xl font-bold mb-4">Create New Folder</h3>
+            <input type="text" id="folderNameInput" placeholder="Folder name" class="w-full border rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-primary">
+            <div class="flex justify-end gap-3">
+                <button id="cancelModalBtn" class="px-4 py-2 text-gray-500 hover:bg-gray-100 rounded-lg">Cancel</button>
+                <button id="confirmFolderBtn" class="signature-gradient text-white px-4 py-2 rounded-lg">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="folder.js"></script>
+</body>
+
+</html>

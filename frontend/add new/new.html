@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Create Note | WEB NOTE'S</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="new.css">
+
+    <style>
+        /* Rich text editor styles */
+        .rich-editor {
+            min-height: 300px;
+            max-height: 60vh;
+            overflow-y: auto;
+            outline: none;
+            line-height: 1.6;
+        }
+
+        .rich-editor:focus {
+            outline: none;
+        }
+
+        .rich-editor h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .rich-editor h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0.75rem 0;
+        }
+
+        .rich-editor ul,
+        .rich-editor ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .rich-editor li {
+            margin: 0.25rem 0;
+        }
+
+        .rich-editor blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 1rem;
+            margin: 0.5rem 0;
+            color: #6b7280;
+        }
+
+        .rich-editor a {
+            color: #6366f1;
+            text-decoration: underline;
+        }
+
+        .toolbar-btn.active {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+        }
+
+        /* Font size dropdown */
+        .font-size-select {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+        }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "error-dim": "#a70138",
+                        "secondary-container": "#e5c6ff",
+                        "surface-tint": "#4647d3",
+                        "secondary-dim": "#740ec2",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-fixed": "#4f0089",
+                        "primary-fixed-dim": "#8387ff",
+                        "on-tertiary": "#ffeef4",
+                        "surface-dim": "#d0d5d8",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "on-surface": "#2c2f31",
+                        "surface": "#f5f7f9",
+                        "background": "#f5f7f9",
+                        "on-surface-variant": "#595c5e",
+                        "on-primary": "#f4f1ff",
+                        "surface-variant": "#d9dde0",
+                        "surface-container-high": "#dfe3e6",
+                        "on-error": "#ffefef",
+                        "on-tertiary-fixed": "#3b002b",
+                        "on-secondary": "#fbefff",
+                        "tertiary-container": "#ff8ed2",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container-highest": "#d9dde0",
+                        "surface-container-low": "#eef1f3",
+                        "error-container": "#f74b6d",
+                        "error": "#b41340",
+                        "on-background": "#2c2f31",
+                        "outline": "#747779",
+                        "outline-variant": "#abadaf",
+                        "secondary-fixed": "#e5c6ff",
+                        "on-secondary-container": "#6900b4",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "primary-fixed": "#9396ff",
+                        "surface-bright": "#f5f7f9",
+                        "on-error-container": "#510017",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#8126cf",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "tertiary-dim": "#882a69",
+                        "tertiary": "#963776",
+                        "primary": "#4647d3",
+                        "primary-container": "#9396ff",
+                        "on-tertiary-container": "#63054a",
+                        "surface-container": "#e5e9eb",
+                        "on-primary-container": "#0a0081",
+                        "tertiary-fixed": "#ff8ed2",
+                        "primary-dim": "#3939c7",
+                        "inverse-primary": "#8083ff",
+                        "inverse-surface": "#0b0f10"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-surface text-on-surface overflow-hidden">
+    <div class="flex h-screen w-full">
+        <aside
+            class="bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-xl h-screen w-64 flex flex-col p-4 font-inter tracking-tight text-on-surface z-50">
+            <div class="mb-8 px-2">
+                <h1 class="text-xl font-bold tracking-tighter text-indigo-600 dark:text-indigo-400">WEB NOTE'S</h1>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-semibold mt-1">Digital
+                    Curator</p>
+            </div>
+            <a href="../Home page/Home.html"
+                class="signature-gradient text-white rounded-xl py-3 px-4 mb-8 flex items-center justify-center gap-2 font-medium scale-95 active:scale-90 transition-transform shadow-lg shadow-indigo-200">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Back
+            </a>
+            <nav class="flex-1 space-y-1">
+                <div
+                    class="bg-white/80 dark:bg-slate-800/80 text-indigo-700 dark:text-indigo-300 rounded-xl shadow-sm flex items-center gap-3 px-4 py-2.5 transition-all duration-300">
+                    <span class="material-symbols-outlined">description</span>
+                    <span class="text-sm font-medium">All Notes</span>
+                </div>
+                <a href="../Favorite page/favorite.html"
+                    class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors duration-200 rounded-xl">
+                    <span class="material-symbols-outlined">star</span>
+                    <span>Favorites</span>
+                </a>
+                <a href="../pinned page/pinned.html"
+                    class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors duration-200 rounded-xl">
+                    <span class="material-symbols-outlined">push_pin</span>
+                    <span>Pinned</span>
+                </a>
+                <a href="../folder/folder.html"
+                    class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors duration-200 rounded-xl">
+                    <span class="material-symbols-outlined">folder</span>
+                    <span>Folders</span>
+                </a>
+            </nav>
+            <div class="mt-auto pt-4 border-t border-slate-200/50">
+                <div
+                    class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 hover:bg-white/50 dark:hover:bg-slate-800/50 flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-pointer">
+                    <span class="material-symbols-outlined">help</span>
+                    <span class="text-sm font-medium">Help</span>
+                </div>
+                <div
+                    class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 hover:bg-white/50 dark:hover:bg-slate-800/50 flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-pointer">
+                    <span class="material-symbols-outlined">shield</span>
+                    <span class="text-sm font-medium">Privacy</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col min-w-0 relative bg-surface-container-low">
+            <header
+                class="bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-3xl fixed top-0 right-0 w-full z-40 flex justify-between items-center h-16 px-6 ml-64 shadow-sm shadow-slate-200/50 dark:shadow-none">
+                <div class="flex items-center gap-4">
+                    <a href="../Home page/Home.html"
+                        class="signature-gradient text-white rounded-xl py-3 px-4 flex items-center justify-center gap-2 font-medium">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="saveBtn"
+                        class="signature-gradient text-white text-xs font-semibold px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
+                        Save
+                    </button>
+                    <button id="deleteBtn"
+                        class="signature-gradient text-white text-xs font-semibold px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
+                        Delete
+                    </button>
+                    <button id="downloadPdfBtn"
+                        class="bg-white/50 border border-slate-200 text-slate-700 text-xs font-semibold px-5 py-2 rounded-full hover:bg-white transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                        Download PDF
+                    </button>
+                </div>
+            </header>
+
+            <div class="flex flex-1 mt-16 p-8 gap-8 overflow-hidden">
+                <section
+                    class="flex-1 flex flex-col bg-surface-container-lowest rounded-lg shadow-sm border-none min-w-0 relative">
+
+                    <!-- Complete Toolbar with all features -->
+                    <div
+                        class="flex flex-wrap items-center gap-1 px-6 py-3 border-b border-surface-container overflow-x-auto no-scrollbar">
+
+                        <!-- Text Formatting Section -->
+                        <div class="flex items-center gap-1 border-r border-surface-container pr-2 mr-2">
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="bold" title="Bold">
+                                <span class="material-symbols-outlined text-xl">format_bold</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="italic" title="Italic">
+                                <span class="material-symbols-outlined text-xl">format_italic</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="underline" title="Underline">
+                                <span class="material-symbols-outlined text-xl">format_underlined</span>
+                            </button>
+                        </div>
+
+                        <!-- Font Size Section -->
+                        <div class="flex items-center gap-1 border-r border-surface-container pr-2 mr-2">
+                            <select id="fontSizeSelect"
+                                class="font-size-select text-sm bg-white dark:bg-slate-800 rounded-md px-2 py-1.5 border border-gray-200 dark:border-gray-700">
+                                <option value="1">Font Size</option>
+                                <option value="1">Small (10px)</option>
+                                <option value="2">Normal (12px)</option>
+                                <option value="3">Medium (14px)</option>
+                                <option value="4">Large (16px)</option>
+                                <option value="5">Huge (18px)</option>
+                                <option value="6">Massive (24px)</option>
+                                <option value="7">Giant (32px)</option>
+                            </select>
+                        </div>
+
+                        <!-- Text Appearance Section - Color Palettes -->
+                        <div class="flex items-center gap-1 border-r border-surface-container pr-2 mr-2">
+                            <!-- Text Color Dropdown -->
+                            <div class="relative">
+                                <button type="button" id="fontColorBtn"
+                                    class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors flex items-center gap-1"
+                                    title="Text Color">
+                                    <span class="material-symbols-outlined text-xl">format_color_text</span>
+                                    <span class="w-3 h-3 rounded-full" id="currentColorPreview"
+                                        style="background-color: #000000;"></span>
+                                </button>
+                                <div id="fontColorPalette" class="hidden">
+                                    <p class="text-xs font-semibold mb-2 text-gray-600 dark:text-gray-400">Text Colors
+                                    </p>
+                                    <div class="grid grid-cols-4 gap-2">
+                                        <!-- 8 Text Colors -->
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #000000;" data-color="#000000"
+                                            title="Black"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FF0000;" data-color="#FF0000"
+                                            title="Red"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #00FF00;" data-color="#00FF00"
+                                            title="Green"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #0000FF;" data-color="#0000FF"
+                                            title="Blue"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FFA500;" data-color="#FFA500"
+                                            title="Orange"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #800080;" data-color="#800080"
+                                            title="Purple"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FF69B4;" data-color="#FF69B4"
+                                            title="Pink"></button>
+                                        <button
+                                            class="color-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #008080;" data-color="#008080"
+                                            title="Teal"></button>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs text-gray-500">Custom:</span>
+                                            <input type="color" id="customFontColor"
+                                                class="w-8 h-8 rounded cursor-pointer border border-gray-300">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Highlight Color Dropdown -->
+                            <div class="relative">
+                                <button type="button" id="highlightColorBtn"
+                                    class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors flex items-center gap-1"
+                                    title="Highlight Color">
+                                    <span class="material-symbols-outlined text-xl">highlight</span>
+                                    <span class="w-3 h-3 rounded-full" id="currentHighlightPreview"
+                                        style="background-color: #FFEB3B;"></span>
+                                </button>
+                                <div id="highlightColorPalette" class="hidden">
+                                    <p class="text-xs font-semibold mb-2 text-gray-600 dark:text-gray-400">Highlight
+                                        Colors</p>
+                                    <div class="grid grid-cols-4 gap-2">
+                                        <!-- 8 Highlight Colors -->
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FFEB3B;" data-color="#FFEB3B"
+                                            title="Yellow"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FFC107;" data-color="#FFC107"
+                                            title="Amber"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #FF9800;" data-color="#FF9800"
+                                            title="Orange"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #8BC34A;" data-color="#8BC34A"
+                                            title="Light Green"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #00BCD4;" data-color="#00BCD4"
+                                            title="Cyan"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #9C27B0;" data-color="#9C27B0"
+                                            title="Purple"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #E91E63;" data-color="#E91E63"
+                                            title="Pink"></button>
+                                        <button
+                                            class="highlight-option w-8 h-8 rounded-full border-2 border-transparent hover:border-gray-400 transition-all"
+                                            style="background-color: #4CAF50;" data-color="#4CAF50"
+                                            title="Green"></button>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs text-gray-500">Custom:</span>
+                                            <input type="color" id="customHighlightColor"
+                                                class="w-8 h-8 rounded cursor-pointer border border-gray-300">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paragraph Section -->
+                        <div class="flex items-center gap-1 border-r border-surface-container pr-2 mr-2">
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="insertUnorderedList" title="Bulleted List">
+                                <span class="material-symbols-outlined text-xl">format_list_bulleted</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="insertOrderedList" title="Numbered List">
+                                <span class="material-symbols-outlined text-xl">format_list_numbered</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                id="multiLevelListBtn" title="Multilevel List">
+                                <span class="material-symbols-outlined text-xl">format_list_numbered_rtl</span>
+                            </button>
+                        </div>
+
+                        <!-- Alignment Section -->
+                        <div class="flex items-center gap-1 border-r border-surface-container pr-2 mr-2">
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="justifyLeft" title="Align Left">
+                                <span class="material-symbols-outlined text-xl">format_align_left</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="justifyCenter" title="Align Center">
+                                <span class="material-symbols-outlined text-xl">format_align_center</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="justifyRight" title="Align Right">
+                                <span class="material-symbols-outlined text-xl">format_align_right</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="justifyFull" title="Justify">
+                                <span class="material-symbols-outlined text-xl">format_align_justify</span>
+                            </button>
+                        </div>
+
+                        <!-- Additional Features -->
+                        <div class="flex items-center gap-1">
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="createLink" title="Insert Link">
+                                <span class="material-symbols-outlined text-xl">link</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="formatBlock" data-value="h1" title="Heading 1">
+                                <span class="text-xs font-bold">H1</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="formatBlock" data-value="h2" title="Heading 2">
+                                <span class="text-xs font-bold">H2</span>
+                            </button>
+                            <button type="button"
+                                class="toolbar-btn p-2 hover:bg-surface-container-high rounded-md transition-colors"
+                                data-command="formatBlock" data-value="blockquote" title="Quote">
+                                <span class="material-symbols-outlined text-xl">format_quote</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto p-12 focus-within:ring-0">
+                        <div
+                            class="flex items-center gap-6 mb-8 text-[11px] uppercase tracking-wider font-bold text-on-surface-variant/60">
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Created: <span id="createdDate">Today</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                                Last edited: <span id="editedDate">Just now</span>
+                            </div>
+                            <div class="ml-auto text-primary flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">cloud_done</span>
+                                All changes saved
+                            </div>
+                        </div>
+
+                        <!-- Title Input -->
+                        <input id="title"
+                            class="w-full text-5xl font-extrabold tracking-tight text-on-surface placeholder:text-surface-variant border-none bg-transparent p-0 mb-6 focus:ring-0"
+                            placeholder="Untitled Note" type="text" />
+
+                        <!-- Rich Text Editor -->
+                        <div id="contentEditor"
+                            class="rich-editor w-full text-lg leading-relaxed text-on-surface-variant placeholder:text-surface-variant border-none bg-transparent p-0 focus:ring-0"
+                            contenteditable="true">
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="w-80 flex flex-col gap-6">
+                    <div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm border-none">
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant/70 mb-4">Note
+                            Options</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between group cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">push_pin</span>
+                                    <span class="text-sm font-medium">Pin to Top</span>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="pinToggle" class="sr-only peer">
+                                    <div
+                                        class="w-10 h-5 bg-surface-container rounded-full peer-checked:bg-primary transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm transition-all peer-checked:translate-x-5">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between group cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary transition-colors">star</span>
+                                    <span class="text-sm font-medium">Add to Favorites</span>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="favToggle" class="sr-only peer">
+                                    <div
+                                        class="w-10 h-5 bg-tertiary/20 rounded-full peer-checked:bg-tertiary transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm transition-all peer-checked:translate-x-5">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined">folder</span>
+                                    <span>Move to Folder</span>
+                                </div>
+                                <select id="folderSelect" class="bg-gray-100 rounded-lg px-2 py-1 text-sm">
+                                    <option value="">No Folder</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+    <script src="new.js"></script>
+</body>
+
+</html>

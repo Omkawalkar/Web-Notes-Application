@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login | WEB NOTE'S</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="bg-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+    <main class="flex-grow flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+        <div class="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-primary/5 blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px]"></div>
+        <div class="w-full max-w-[480px] z-10">
+            <div class="bg-surface-container-lowest ambient-shadow rounded-lg p-10 md:p-14 border border-outline-variant/15">
+                <header class="text-center mb-12">
+                    <h1 class="text-4xl font-extrabold tracking-tighter text-on-surface mb-0">WEB NOTE'S</h1>
+                </header>
+                
+                <!-- ✅ ADDED: Login message element -->
+                <div id="loginMessage" class="text-center mb-4 text-sm font-medium"></div>
+                
+                <form id="loginForm" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant ml-1" for="email">Email Address</label>
+                        <div class="relative">
+                            <input class="w-full bg-surface-container-high border-none rounded-md px-5 py-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary-container/50 transition-all outline-none" id="email" placeholder="name@company.com" type="email"/>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center px-1">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant" for="password">Password</label>
+                            <a class="text-[10px] font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors" href="#">Forgot Password?</a>
+                        </div>
+                        <div class="relative">
+                            <input class="w-full bg-surface-container-high border-none rounded-md px-5 py-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary-container/50 transition-all outline-none" id="password" placeholder="••••••••" type="password"/>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <button class="w-full signature-gradient text-on-primary font-bold py-4 px-6 rounded-full shadow-xl shadow-primary/25 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+                            Login
+                            <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-10 pt-8 border-t border-outline-variant/10 text-center">
+                    <p class="text-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="text-primary font-semibold hover:text-secondary transition-colors ml-1" href="../create/create.html">Create Account</a>
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-center gap-8">
+                <div class="flex items-center gap-2 text-on-surface-variant/60 grayscale opacity-70">
+                    <span class="material-symbols-outlined text-sm" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    <span class="text-[10px] uppercase tracking-widest font-bold">End-to-end encrypted</span>
+                </div>
+                <div class="flex items-center gap-2 text-on-surface-variant/60 grayscale opacity-70">
+                    <span class="material-symbols-outlined text-sm" data-icon="cloud_done" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+                    <span class="text-[10px] uppercase tracking-widest font-bold">Cloud Synced</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="w-full py-8 mt-auto bg-slate-50 dark:bg-slate-900 tonal-shift">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+            <div class="text-xs uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400">
+                © 2024 Lumina Notes. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a class="text-xs uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+                <a class="text-xs uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+                <a class="text-xs uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+            </div>
+        </div>
+    </footer>  
+    <script src="login.js"></script>
+</body>
+</html>
